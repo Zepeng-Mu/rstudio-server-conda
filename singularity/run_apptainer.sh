@@ -24,7 +24,7 @@ R_BIN=/PHShome/zm104/miniforge3/envs/R43/bin/R
 workdir=$(python -c 'import tempfile; print(tempfile.mkdtemp())')
 
 mkdir -p -m 700 ${workdir}/run ${workdir}/tmp ${workdir}/var/lib/rstudio-server
-cat >${workdir}/database.conf <<END
+cat > ${workdir}/database.conf <<END
 provider=sqlite
 directory=/var/lib/rstudio-server
 END
@@ -36,7 +36,7 @@ END
 # Set R_LIBS_USER to a path specific to rocker/rstudio to avoid conflicts with
 # personal libraries from any R installation in the host environment
 
-cat >${workdir}/rsession.sh <<END
+cat > ${workdir}/rsession.sh <<END
 #!/bin/sh
 export OMP_NUM_THREADS=${SLURM_JOB_CPUS_PER_NODE}
 export R_LIBS_USER=${HOME}/R/rocker-rstudio/4.2
@@ -58,11 +58,10 @@ export SINGULARITYENV_PASSWORD=123456
 # tiny race condition between the python & singularity commands
 readonly PORT=$(python -c 'import socket; s=socket.socket(); s.bind(("", 0)); print(s.getsockname()[1]); s.close()')
 
-/apps/released/gcc-toolchain/gcc-4.x/singularity/singularity-3.7.0/bin/singularity exec \
+apptainer exec \
     --cleanenv --network=none \
     --bind ${CONDA_PREFIX}:${CONDA_PREFIX} \
     --bind /data/srlab2:/data/srlab2 \
-    --bind /data/srlab1:/data/srlab1 \
     --bind /PHShome/zm104/tools:/PHShome/zm104/tools \
     --env CONDA_PREFIX=${CONDA_PREFIX} \
     --env RSTUDIO_WHICH_R=${R_BIN} \
@@ -82,4 +81,4 @@ readonly PORT=$(python -c 'import socket; s=socket.socket(); s.bind(("", 0)); pr
         --auth-timeout-minutes=0 \
         --auth-stay-signed-in-days=30
 
-printf 'rserver exited\n' 1>&2
+printf 'rserver exited' 1>&2
