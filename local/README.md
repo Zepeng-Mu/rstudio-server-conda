@@ -26,7 +26,7 @@ I will use my own setup to run `seurat5` as an example here. Since I haven't fig
 
 #### 00. Preparation
 
-First, install VS Code Desktop app on your computer. You should also install Remote - SSH extension (https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-ssh). You
+First, install VS Code Desktop app on your computer. You should also install Remote - SSH extension (https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-ssh).
 
 Then, install VS Code CLI in your ERIS home folder following [from here](https://code.visualstudio.com/download).
 After installing, it should be an executable `code` in the folder you installed it. You can also learn more about how to use VS Code Server [here](https://code.visualstudio.com/docs/remote/vscode-server).
