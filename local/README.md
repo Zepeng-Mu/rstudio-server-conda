@@ -54,7 +54,7 @@ $ which R
 Start a VS Code tunnel that allows you to connect to ERIS from the VS Code app on your local computer.
 
 ```sh
-./code --tunnel
+./code tunnel
 ```
 
 Follow the instructions. Basically, you will be directed to a web page where you login with your Github account. After that, you should be able to connect to ERIS from VS Code on your computer. You can find that under "Remote Explorer".
